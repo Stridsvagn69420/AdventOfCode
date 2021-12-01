@@ -1,0 +1,1 @@
+Read-Host -MaskInput -Prompt "Enter Session Cookie from AoC" | Out-File -Encoding "utf8" -FilePath "./lib/session.txt" -NoNewline
