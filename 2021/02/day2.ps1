@@ -31,13 +31,34 @@ function Get-Part1 {
             };
         }
     }
-    return ($depth * $distance);s
+    return [int]($depth * $distance);
 }
 
 # Part 2
-function Get-Part1 {
-    
+function Get-Part2 {
+    [int]$aim = 0;
+    [int]$depth = 0;
+    [int]$horizon = 0;
+    foreach ($command in $inputAoC) {
+        $cmd = $command -split " ";
+        [string]$operation = $cmd[0];
+        [int]$count = $cmd[1];
+        switch ($operation) {
+            "forward" {
+                $horizon = $horizon + $count;
+                $depth = $depth + [int]($aim * $count);
+            };
+            "up" {
+                $aim = $aim - $count;
+            };
+            "down" {
+                $aim = $aim + $count;
+            };
+        }
+    }
+    return [int]($depth * $horizon);
 }
 
 # Main
 Write-Host "Part 1: $(Get-Part1)";
+Write-Host "Part 1: $(Get-Part2)";
