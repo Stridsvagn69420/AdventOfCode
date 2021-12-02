@@ -21,7 +21,7 @@ function Get-Part1 {
             $up++;
         }
     }
-    Write-Host "Increased: $up";
+    return [int]$up;
 }
 
 # Part 2
@@ -39,9 +39,9 @@ function Get-Part2 {
             $up++;
         }
     }
-    Write-Host "Larger: $up";
+    return [int]$up;
 }
 
 # Main()
-Get-Part1;
-Get-Part2;
+Write-Host "Part 1: $(Get-Part1)";
+Write-Host "Part 2: $(Get-Part2)";
