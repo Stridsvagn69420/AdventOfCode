@@ -1,7 +1,6 @@
 const https = require("https");
 const fs = require("fs");
 const { join } = require("path");
-
 const token = fs.readFileSync(join(__dirname, "../../lib/session.txt")).toString().split("\n")[0];
 
 if (fs.existsSync(join(__dirname, "input.txt"))) {
@@ -37,12 +36,22 @@ function Main(data) {
 			extracted[int] += entry[int];
 		}
 	}
-	for (let count = 0; count < extracted.length; count++) {
-		console.log(`${count}: ${extracted[count]}`);
+	for (let i = 0; i < extracted.length; i++) {
+		const chars = extracted[i].split("");
+		let one = 0;
+		let zero = 0;
+		chars.forEach(char => {
+			if (char == "1") {
+				one++;
+			}
+			if (char == "0") {
+				zero++;
+			}
+		});
+		gamma += (one > zero) ? "1" : "0";
+		epsylon += (one < zero) ? "1" : "0";
 	}
-	/*console.log(gamma, epsylon);
 	const decGamma = parseInt(gamma, 2)
 	const decEpsyl = parseInt(epsylon, 2);
-	console.log(decGamma, decEpsyl);
-	console.log(`Part 1: ${decGamma * decEpsyl}`);*/
+	console.log(`Part 1: ${decGamma * decEpsyl}`);
 }
