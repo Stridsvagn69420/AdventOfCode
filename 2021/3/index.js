@@ -27,27 +27,22 @@ if (fs.existsSync(join(__dirname, "input.txt"))) {
 function Main(data) {
 	const list = data.toString().split("\n").filter(x => x.length > 0);
 	if (!fs.existsSync(join(__dirname, "input.txt"))) fs.writeFileSync(join(__dirname, "input.txt"), list.join("\n"));
-	// START BUG: Code counts ones and zeroes wrong
 	var gamma = "";
 	var epsylon = "";
+	var extracted = [];
+	for (let i = 0; i < list[0].length; i++) extracted.push("");
 	for (let i = 0; i < list.length; i++) {
-		let one = 0;
-		let zero = 0;
 		const entry = list[i].split("");
-		for (int = 0; int < entry.length; int++) {
-			console.log("Entry:", i, "Position:", int, "Charcter:", entry[int]);
-			console.log("Before:", one, zero);
-			if (entry[int] == "1") one++;
-			if (entry[int] == "0") zero++;
-			console.log("After:", one, zero);
+		for (let int = 0; int < entry.length; int++) {
+			extracted[int] += entry[int];
 		}
-		gamma += (one > zero) ? "1" : "0";
-		epsylon += (one < zero) ? "1" : "0";
 	}
-	// END BUG: 
-	console.log(gamma, epsylon);
+	for (let count = 0; count < extracted.length; count++) {
+		console.log(`${count}: ${extracted[count]}`);
+	}
+	/*console.log(gamma, epsylon);
 	const decGamma = parseInt(gamma, 2)
 	const decEpsyl = parseInt(epsylon, 2);
 	console.log(decGamma, decEpsyl);
-	console.log(`Part 1: ${decGamma * decEpsyl}`);
+	console.log(`Part 1: ${decGamma * decEpsyl}`);*/
 }
