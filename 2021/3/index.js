@@ -26,8 +26,6 @@ if (fs.existsSync(join(__dirname, "input.txt"))) {
 function Main(data) {
 	const list = data.toString().split("\n").filter(x => x.length > 0);
 	if (!fs.existsSync(join(__dirname, "input.txt"))) fs.writeFileSync(join(__dirname, "input.txt"), list.join("\n"));
-	var gamma = "";
-	var epsylon = "";
 	var extracted = [];
 	for (let i = 0; i < list[0].length; i++) extracted.push("");
 	for (let i = 0; i < list.length; i++) {
@@ -36,6 +34,8 @@ function Main(data) {
 			extracted[int] += entry[int];
 		}
 	}
+	var gamma = "";
+	var epsylon = "";
 	for (let i = 0; i < extracted.length; i++) {
 		const chars = extracted[i].split("");
 		let one = 0;
@@ -48,10 +48,13 @@ function Main(data) {
 				zero++;
 			}
 		});
-		gamma += (one > zero) ? "1" : "0";
-		epsylon += (one < zero) ? "1" : "0";
+		//Part 1
+		const Bit1MoreCommonThanBit0 = one > zero;
+		gamma += Bit1MoreCommonThanBit0 ? "1" : "0";
+		epsylon += Bit1MoreCommonThanBit0 ? "0" : "1";
 	}
 	const decGamma = parseInt(gamma, 2)
 	const decEpsyl = parseInt(epsylon, 2);
 	console.log(`Part 1: ${decGamma * decEpsyl}`);
+
 }

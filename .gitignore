@@ -1,3 +1,5 @@
 /lib/session.txt
 input.txt
 *.exe
+bin/
+obj/
